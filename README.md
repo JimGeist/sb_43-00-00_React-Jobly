@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# sb_43-00-00_React-Jobly
+ 
+## Technology Stack
+- **Front-end**: ReactJS
+- **Back-end**: NodeJS, provided
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Assignment Details
 
-## Available Scripts
+Build a react front-end to the provided Jobly backend. 
 
-In the project directory, you can run:
+**Step Zero: Setup**
 
-### `npm start`
+**Step One: Design Component Hierarchy**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Interesting. The step was completed, but it's helpfulness is debatable.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**Step Two: Make an API Helper**
 
-### `npm test`
+The API handler is a class that holds the methods that make the requests from the Jobly backend. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The Jobly backend has a lot of functionality that will not get implemented in the frontend -- examples are adding a company, adding a position, altering the admin flag. The approach for this piece was to indentify all possbible routes from the backend and add them to the api class as comments / placecholders. The code was impletmented as the respective route was needed.
 
-### `npm run build`
+**Step Three: Make Your Routes File**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Step Four: Companies & Company Detail**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Step Five: Jobs**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Step Six: Current User**
 
-### `npm run eject`
+**Step Seven: Using localStorage and Protecting Routes**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Step Eight: Profile Page**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Step Nine: Job Applications**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**Step Ten: Deploy your Application on Heroku**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Additional Details
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Enhancements**
+- None.
 
-### Code Splitting
+**Difficulties**
+- Just a lot all at once. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
