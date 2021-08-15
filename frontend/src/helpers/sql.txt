@@ -1,0 +1,6 @@
+Some helpful SQL queries
+
+5 compannies the the most jobs
+ select c.handle, count(*) AS nbrJobs from companies AS c JOIN jobs AS j
+ON c.handle = j.company_handle GROUP BY c.handle ORDER BY count(*) DESC LIMIT 5;
+
