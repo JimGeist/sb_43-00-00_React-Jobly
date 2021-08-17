@@ -14,7 +14,7 @@ Build a react front-end to the provided Jobly backend.
 
 Interesting. The step was completed, but it's helpfulness is debatable. The *Jobly Component Map* (below)followed the backend routes more. It helped to see the breadth of the routes that exist in the backend and it caused code exploration and familiarization. The components built do not resemble the component hierarchy.
 
-![Jobly Component Map](.\frontend\src\static\JoblyComponentMap_60.png) 
+![Jobly Component Map](./frontend/src/static/JoblyComponentMap_60.png) 
 
 **Step Two: Make an API Helper**
 
