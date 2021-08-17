@@ -1,28 +1,33 @@
 // import logo from './logo.svg';
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBar from "./NavBar";
 import Companies from "./Companies";
 import CompanyDetails from "./CompanyDetails";
 import Jobs from "./Jobs";
-import Auth from "./Auth";
+import AuthSignUp from "./AuthSignUp";
+import AuthSignIn from "./AuthSignIn";
+import AuthSignOut from "./AuthSignOut";
 import "./App.css";
-
-
-
 
 function App() {
 
   document.title = "Jobly"
 
+  const [currUser, setCurrUser] = useState({});
+
+  const setAuthUser = (inUser) => {
+    setCurrUser(inUser);
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar />
+        <NavBar currUser={currUser} />
         <main>
           <Switch>
             <Route exact path="/">
-              <Auth />
+              <AuthSignIn setCurrUserFx={setAuthUser} />
             </Route>
             <Route exact path="/companies">
               <Companies />
@@ -34,10 +39,13 @@ function App() {
               <Jobs />
             </Route>
             <Route path="/login">
-              <Auth />
+              <AuthSignIn setCurrUserFx={setAuthUser} whereTo="/jobs" />
             </Route>
             <Route path="/signup">
-              <Auth signIn={false} />
+              <AuthSignUp setCurrUserFx={setAuthUser} whereTo="/jobs" />
+            </Route>
+            <Route path="/signout">
+              <AuthSignOut setCurrUserFx={setAuthUser} whereTo="/" />
             </Route>
             <Route>
               <p>...and you still . . . haven't found . . . what you're looking for!</p>

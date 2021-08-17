@@ -1,9 +1,11 @@
 import React from "react";
 import "./NavBar.css";
+import { NavItemLink, NavItemAuth } from "./NavItems";
 import { NavLink } from "react-router-dom";
-import { Navbar, Nav, NavItem, Button } from "reactstrap";
+import { Navbar, Nav, NavItem, Button, NavbarText } from "reactstrap";
 
-function NavBar() {
+function NavBar({ currUser = { username: "", token: "" } }) {
+  console.log("NavBar: currUser=", currUser)
   return (
     <div>
       <Navbar expand="md">
@@ -18,16 +20,16 @@ function NavBar() {
           <NavItem>
             <NavLink to="/jobs">Jobs</NavLink>
           </NavItem>
-          <NavItem>
-            <NavLink to="/login">Sign In</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/signup">Sign Up</NavLink>
-          </NavItem>
-          <NavItem>
-            <Button outline color="primary"><NavLink to="/signup">Sign Out</NavLink></Button>
+          {!(currUser.token) ? <NavItemAuth /> : ""}
+
+          <NavItem className="mr-2">
+            {(currUser.token)
+              ? <Button outline color="primary"><NavLink to="/signout">Sign Out</NavLink></Button>
+              : ""
+            }
           </NavItem>
         </Nav>
+        <NavbarText>{currUser.username}</NavbarText>
       </Navbar>
     </div>
   );

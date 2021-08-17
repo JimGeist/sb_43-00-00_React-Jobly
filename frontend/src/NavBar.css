@@ -41,3 +41,12 @@ nav a:not(.navbar-brand):hover {
 .navbar-brand {
   margin-left: 0.5rem;
 }
+
+.mr-2 {
+  text-align:right;
+}
+
+.navbar-text {
+  margin-left: 0.5rem;
+  color: #f0f2f5;
+}

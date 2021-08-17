@@ -73,18 +73,54 @@ class JoblyApi {
     return res.companies;
   }
 
-  /** POST /auth/token:  { username, password } => { token }
-   * Returns JWT token which can be used to authenticate further requests.
-   * Authorization required: none
+
+
+  /**
+   * signIn() methods authenticates a returning Jobly user. The user object must include
+   *  a username and password. 
+   * @param {*} user, object with username and password string fields. 
+    * @returns JWT "token" which can be used to authenticate further requests.
    */
+  static async signIn(user) {
+    /** POST /auth/token:  { username, password } => { token }
+     * Returns JWT "token" which can be used to authenticate further requests.
+     * Authorization required: none
+     */
+
+    // console.log("Jobly API - signIn: user=", user);
+
+    let res = await this.request(`auth/token`, user, "post");
+    // console.log("Jobly API - signIn: res=", res);
+    // console.dir(res);
+    // console.log("\n");
+    return res.token;
+
+  };
 
 
-  /** POST /auth/register:   { user } => { token }
-   * user must include { username, password, firstName, lastName, email }
-   * Returns JWT token which can be used to authenticate further requests.
-   * Authorization required: none
+  /**
+   * signUp() methods adds a new user to Jobly. The user object must include
+   *  a username, password, firstName, lastName, and email. 
+   * @param {*} user 
+    * @returns JWT "token" which can be used to authenticate further requests.
    */
+  static async signUp(user) {
+    /** POST /auth/register:   { user } => { token }
+     * user must include { username, password, firstName, lastName, email }
+     * isAdmin defaults to false and is NOT included.
+     * Returns JWT "token" which can be used to authenticate further requests.
+     * Authorization required: none
+     */
 
+    // console.log("Jobly API - signUp: user=", user);
+
+    let res = await this.request(`auth/register`, user, "post");
+    // console.log("Jobly API - signUp: res=", res);
+    // console.dir(res);
+    // console.log("\n");
+    return res.token;
+
+  };
 
 
   /** POST /companies/ { company } =>  { company }

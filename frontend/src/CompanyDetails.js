@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import JoblyApi from "./helpers/api";
-import { Navbar, Nav, NavItem, Button } from "reactstrap";
+// import { Navbar, Nav, NavItem, Button } from "reactstrap";
 import CompanyCard from "./CompanyCard";
 import "./CompanyDetails.css";
 

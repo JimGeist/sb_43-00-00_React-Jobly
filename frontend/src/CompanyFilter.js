@@ -23,7 +23,7 @@ const CompanyFilter = ({ activeFilter, setFilterFx }) => {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setFormData(formData => ({ formData, [name]: value }));
+        setFormData(formData => ({ ...formData, [name]: value }));
     }
 
     const handleClear = (event) => {
@@ -35,7 +35,7 @@ const CompanyFilter = ({ activeFilter, setFilterFx }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label forHtml="name">Company Name is like</label>
+            <label htmlFor="name">Company Name is like</label>
             <input key="name" id="name" name="name" type="text" value={formData.name} onChange={handleChange} />
 
             <button>Apply</button>

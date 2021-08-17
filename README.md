@@ -12,7 +12,9 @@ Build a react front-end to the provided Jobly backend.
 
 **Step One: Design Component Hierarchy**
 
-Interesting. The step was completed, but it's helpfulness is debatable.
+Interesting. The step was completed, but it's helpfulness is debatable. The *Jobly Component Map* (below)followed the backend routes more. It helped to see the breadth of the routes that exist in the backend and it caused code exploration and familiarization. The components built do not resemble the component hierarchy.
+
+![Jobly Component Map](.\frontend\src\static\JoblyComponentMap_60.png) 
 
 **Step Two: Make an API Helper**
 
@@ -27,6 +29,14 @@ The Jobly backend has a lot of functionality that will not get implemented in th
 **Step Five: Jobs**
 
 **Step Six: Current User**
+
+Ability for a user to sign up and for an existing user to sign in were created. Some error messaging was added to the sign up and sign in form. The only front-end validation that exists is the check that password and confirmation password match. The error messaging added is a start but by no means a complete solution.
+
+Navigation components were adjusted and Sign In / Sign Up links only appear for unauthenticated users. The current username and a Sign Out link / button appear in the navigation once the user is authenticated (either by signing up or signing in).
+
+Authenticated users are placed on the jobs listing page. 
+
+Routes are not yet protected.
 
 **Step Seven: Using localStorage and Protecting Routes**
 

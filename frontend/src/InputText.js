@@ -8,21 +8,24 @@ const InputText = ({ fieldName,
     textLabel = "",
     textPlaceHolder = "",
     onChangeFx,
-    fieldValue }) => {
+    fieldValue,
+    fieldError }) => {
 
     return (
         <>
             {
                 includeLabel
-                    ? <label className="InputText-label" forHtml={fieldName} >{textLabel}</label>
+                    ? <label className="InputText-label" htmlFor={fieldName} >{textLabel}</label>
                     : ""
             }
+
             <input className="InputText-input" key={fieldName} id={fieldName} name={fieldName}
                 type={inputType}
-                placeHolder={textPlaceHolder}
+                placeholder={textPlaceHolder}
                 required
                 value={fieldValue}
                 onChange={onChangeFx} />
+            <span className="InputText-error">{fieldError}&nbsp;</span>
         </>
     )
 }
