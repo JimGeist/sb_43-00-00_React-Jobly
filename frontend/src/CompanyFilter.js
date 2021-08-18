@@ -7,11 +7,8 @@ const CompanyFilter = ({ activeFilter, setFilterFx }) => {
 
     const [formData, setFormData] = useState(INITIAL_VALUES);
 
-    console.log(`CompanyFilter component: activeFilter=${activeFilter}`);
-
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("button:", event.target);
         if ((formData.name.trim()).length > 0) {
             // name has a value
             setFilterFx(`?name=${formData.name.trim()}`);
@@ -30,8 +27,6 @@ const CompanyFilter = ({ activeFilter, setFilterFx }) => {
         setFormData(INITIAL_VALUES);
         setFilterFx("");
     }
-
-
 
     return (
         <form onSubmit={handleSubmit}>

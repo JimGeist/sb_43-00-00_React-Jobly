@@ -67,9 +67,7 @@ class JoblyApi {
      * Authorization required: none
     */
     let res = await this.request(`companies${filter}`);
-    console.log("Jobly API - getCompanies: companies=");
-    console.dir(res.companies);
-    console.log("\n");
+
     return res.companies;
   }
 
@@ -87,12 +85,8 @@ class JoblyApi {
      * Authorization required: none
      */
 
-    // console.log("Jobly API - signIn: user=", user);
-
     let res = await this.request(`auth/token`, user, "post");
-    // console.log("Jobly API - signIn: res=", res);
-    // console.dir(res);
-    // console.log("\n");
+
     return res.token;
 
   };
@@ -112,12 +106,8 @@ class JoblyApi {
      * Authorization required: none
      */
 
-    // console.log("Jobly API - signUp: user=", user);
-
     let res = await this.request(`auth/register`, user, "post");
-    // console.log("Jobly API - signUp: res=", res);
-    // console.dir(res);
-    // console.log("\n");
+
     return res.token;
 
   };
@@ -165,9 +155,7 @@ class JoblyApi {
      * Authorization required: none
      */
     let res = await this.request("jobs");
-    console.log("Jobly API - getJobs: jobs=");
-    console.dir(res.jobs);
-    console.log("\n");
+
     return res.jobs;
   }
 

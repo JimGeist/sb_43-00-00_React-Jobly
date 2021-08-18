@@ -24,13 +24,9 @@ const Jobs = ({ jobs = [], classHide = "" }) => {
 
         async function getAllJobs() {
 
-            console.log("Jobs component: getAllJobs");
-
             setJobList(await JoblyApi.getJobs());
 
         }
-
-        console.log("Jobs component: in useEffect");
 
         if (jobList.length === 0) getAllJobs();
 
@@ -40,7 +36,6 @@ const Jobs = ({ jobs = [], classHide = "" }) => {
     return (
 
         <ul className="Jobs-ul">
-            <h3>don't forget job filtering!</h3>
             {
                 jobList.length === 0
                     ? <li>classifieds</li>

@@ -6,8 +6,6 @@ import "./Job.css";
 
 const Job = ({ id, title, salary, equity, companyHandle, companyName, classHide = "" }) => {
 
-    console.log(`Job component: id=${id}, title=${title}, salary=${salary}, equity=${equity}, companyHandle=${companyHandle}, companyName=${companyName}, classHide=${classHide}`);
-
     return (
         <li>{title}
             <span className={`${classHide}`}> with <Link to={`/companies/${companyHandle}`} >{companyName}</Link> </span>

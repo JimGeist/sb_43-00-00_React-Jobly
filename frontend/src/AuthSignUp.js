@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import JoblyApi from "./helpers/api";
 import { useHistory } from "react-router-dom";
+import { useLocalStorage } from "./hooks/hooks";
 
 import InputText from "./InputText"
 import "./AuthSignUp.css";
@@ -26,28 +27,31 @@ const AuthSignUp = ({ setCurrUserFx, whereTo = "/jobs" }) => {
         email: ""
     };
 
+    const [currUser, setUser, removeUser] = useLocalStorage();
+
     const [formData, setFormData] = useState(INITIAL_VALUES);
     const [formError, setFormError] = useState({ INITIAL_VALUES });
 
     const history = useHistory();
 
+    // Do not show Signup page to someone who is already signed in. 
+    if (currUser.token) history.push(whereTo);
+
     const handleSubmit = (event) => {
         event.preventDefault();
         async function signUpUser(newUser) {
 
-            console.log("Auth component - signUpUser(): newUser=", newUser);
-
-            // setCompanyList(await JoblyApi.signUp(newUser));
             try {
-                setCurrUserFx({ username: formData.username, token: (await JoblyApi.signUp(newUser)).token })
+                // setCurrUserFx({ username: formData.username, token: (await JoblyApi.signUp(newUser)).token })
+                // JoblyApi.signUp returns the token
+                setUser({ username: formData.username, token: await JoblyApi.signUp(newUser) });
+                setCurrUserFx();
                 history.push(whereTo);
 
                 // const res = await JoblyApi.signUp(newUser);
             } catch (error) {
                 // This is partial error handling. It assumes the error will occur on 
                 //  the username field.
-                console.log("Auth component - signUpUser() error: error=", error);
-                console.log("   error[0]=", error[0]);
 
                 const currErrors = { ...INITIAL_VALUES, username: error[0] };
                 setFormError(currErrors);

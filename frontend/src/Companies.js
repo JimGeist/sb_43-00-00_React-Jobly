@@ -22,13 +22,10 @@ const Companies = () => {
 
         async function getAllCompanies() {
 
-            console.log("companies component: getAllCompanies");
-
             setCompanyList(await JoblyApi.getCompanies(companyFilter));
 
         }
 
-        console.log("companies component: in useEffect");
         getAllCompanies();
 
     }, [companyFilter]);

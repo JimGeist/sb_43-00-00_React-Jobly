@@ -5,9 +5,6 @@ import "./CompanyCard.css";
 
 const CompanyCard = ({ handle, name, desc, numEmployees, logoUrl = "", inJobs }) => {
 
-    console.log(`CompanyCard component: handle=${handle}, name=${name}, description=${desc}, numEmployees=${numEmployees}, inJobs=`);
-    console.dir(inJobs);
-
     return (
         <>
             <h1>{[name]}</h1>

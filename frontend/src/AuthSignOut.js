@@ -9,12 +9,12 @@ import { useHistory } from "react-router-dom";
  * @returns a component with the form fields necessary for a signin. Redirection to 
  *  the jobs page occurs on successful authentication / signin of the returning visitor.
  */
-const AuthSignOut = ({ setCurrUserFx, whereTo = "/jobs" }) => {
-    // AuthSignIn() component asks for username and password.
+const AuthSignOut = ({ removeUserFx, whereTo = "/" }) => {
 
     const history = useHistory();
 
-    setCurrUserFx({});
+    // setCurrUserFx({});
+    removeUserFx();
     history.push(whereTo);
 
     return null;

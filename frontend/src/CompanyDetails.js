@@ -18,13 +18,9 @@ const CompanyDetails = () => {
 
         async function getCompanyDetails(handle) {
 
-            // console.log("companies component: getAllCompanies");
-
             setCompany(await JoblyApi.getCompany(handle));
 
         }
-
-        console.log(`ompanyDetails component: in useEffect, params.handle=${handle}`);
 
         getCompanyDetails(handle);
 

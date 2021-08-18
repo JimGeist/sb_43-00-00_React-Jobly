@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { useLocalStorage } from "./hooks/hooks";
 import NavBar from "./NavBar";
 import Companies from "./Companies";
 import CompanyDetails from "./CompanyDetails";
@@ -8,26 +9,30 @@ import Jobs from "./Jobs";
 import AuthSignUp from "./AuthSignUp";
 import AuthSignIn from "./AuthSignIn";
 import AuthSignOut from "./AuthSignOut";
+import Home from "./Home";
+
 import "./App.css";
 
 function App() {
 
   document.title = "Jobly"
 
-  const [currUser, setCurrUser] = useState({});
+  // const [currUser, setCurrUser] = useState({});
+  const [currUser, setCurrUser, removeUser] = useLocalStorage();
 
   const setAuthUser = (inUser) => {
     setCurrUser(inUser);
   }
 
+
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar currUser={currUser} />
+        <NavBar currUser={currUser} removeUserFx={removeUser} />
         <main>
           <Switch>
             <Route exact path="/">
-              <AuthSignIn setCurrUserFx={setAuthUser} />
+              <Home />
             </Route>
             <Route exact path="/companies">
               <Companies />
@@ -45,7 +50,7 @@ function App() {
               <AuthSignUp setCurrUserFx={setAuthUser} whereTo="/jobs" />
             </Route>
             <Route path="/signout">
-              <AuthSignOut setCurrUserFx={setAuthUser} whereTo="/" />
+              <AuthSignOut removeUserFx={removeUser} whereTo="/" />
             </Route>
             <Route>
               <p>...and you still . . . haven't found . . . what you're looking for!</p>

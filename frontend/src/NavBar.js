@@ -1,11 +1,17 @@
 import React from "react";
-import "./NavBar.css";
 import { NavItemLink, NavItemAuth } from "./NavItems";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav, NavItem, Button, NavbarText } from "reactstrap";
 
-function NavBar({ currUser = { username: "", token: "" } }) {
+import "./NavBar.css";
+
+function NavBar({ currUser = { username: "", token: "" }, removeUserFx }) {
+  // function NavBar() {
+
+  // const [currUser, setUser, removeUser] = useLocalStorage();
+
   console.log("NavBar: currUser=", currUser)
+
   return (
     <div>
       <Navbar expand="md">
@@ -14,12 +20,14 @@ function NavBar({ currUser = { username: "", token: "" } }) {
         </NavLink>
 
         <Nav className="ml-auto" navbar>
-          <NavItem>
+          <NavItemLink navTo="/companies" navDisplay="Companies" />
+          <NavItemLink navTo="/jobs" navDisplay="Jobs" />
+          {/* <NavItem>
             <NavLink to="/companies">Companies</NavLink>
           </NavItem>
           <NavItem>
             <NavLink to="/jobs">Jobs</NavLink>
-          </NavItem>
+          </NavItem> */}
           {!(currUser.token) ? <NavItemAuth /> : ""}
 
           <NavItem className="mr-2">
