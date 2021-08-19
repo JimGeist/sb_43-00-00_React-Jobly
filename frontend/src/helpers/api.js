@@ -14,14 +14,20 @@ class JoblyApi {
   // the token for interactive with the API will be stored here.
   static token;
 
-  static async request(endpoint, data = {}, method = "get") {
+  static async request(endpoint, data = {}, method = "get", token = "") {
     console.debug("API Call:", endpoint, data, method);
 
     //there are multiple ways to pass an authorization token, this is how you pass it in the header.
     // this has been provided to show you another way to pass the token. you are only expected to read 
     // this code for this project.
     const url = `${BASE_URL}/${endpoint}`;
-    const headers = { Authorization: `Bearer ${JoblyApi.token}` };
+
+    // Handle the headers by including an Authorization header when a token was passed as an argument.
+    // const headers = { Authorization: `Bearer ${JoblyApi.token}` };
+    const headers = (token)
+      ? { Authorization: `Bearer ${token}` }
+      : {};
+
     const params = (method === "get")
       ? data
       : {};
@@ -53,6 +59,7 @@ class JoblyApi {
     return res.company;
   }
 
+
   /** Get details for all companies. Need to support filtering by adding filtering to 
    *  query string.
    */
@@ -70,7 +77,6 @@ class JoblyApi {
 
     return res.companies;
   }
-
 
 
   /**
@@ -129,9 +135,14 @@ class JoblyApi {
    * Authorization required: admin
    */
 
+
+
+
   /** DELETE /companies/[handle]  =>  { deleted: handle }
    * Authorization: admin
    */
+
+
 
 
   /** POST /jobs/ { job } => { job }
@@ -139,6 +150,8 @@ class JoblyApi {
    * Returns { id, title, salary, equity, companyHandle }
    * Authorization required: admin
    */
+
+
 
 
   /** Get details for all jobs, regardless of company. 
@@ -167,6 +180,8 @@ class JoblyApi {
    */
 
 
+
+
   /** PATCH /jobs/[jobId]  { fld1, fld2, ... } => { job }
    * Data can include: { title, salary, equity }
    * Returns { id, title, salary, equity, companyHandle }
@@ -174,9 +189,13 @@ class JoblyApi {
    */
 
 
+
+
   /** DELETE /jobs/[handle]  =>  { deleted: id }
    * Authorization required: admin
    */
+
+
 
 
   /** POST /users/ { user }  => { user, token }
@@ -189,17 +208,32 @@ class JoblyApi {
    **/
 
 
+
+
   /** GET /users/ => { users: [ {username, firstName, lastName, email }, ... ] }
    * Returns list of all users.
    * Authorization required: admin
    **/
 
 
-  /** GET /users/[username] => { user }
-   * Returns { username, firstName, lastName, isAdmin, jobs }
-   *   where jobs is { id, title, companyHandle, companyName, state }
-   * Authorization required: admin or same user-as-:username
-   **/
+
+
+  /** Get details for the user, including jobs. 
+   *  
+   */
+  static async getUser(user) {
+
+    /** GET /users/[username] => { user }
+     * Returns { username, firstName, lastName, isAdmin, applications }
+     *   where applications is an array of job ids
+     * Authorization required: admin or same user-as-:username
+     **/
+
+    let res = await this.request(`users/${user.username}`, {}, "get", user.token);
+
+    return res.user;
+  }
+
 
 
   /** PATCH /users/[username] { user } => { user }
@@ -210,22 +244,37 @@ class JoblyApi {
    **/
 
 
+
+
   /** DELETE /users/[username]  =>  { deleted: username }
    * Authorization required: admin or same-user-as-:username
    **/
 
 
-  /** POST /users/[username]/jobs/[id]  { state } => { application }
-   * Returns {"applied": jobId}
-   * Authorization required: admin or same-user-as-:username
-   * */
+
+
+  /** Apply for a job. The user object and job id are required arguments.
+   *  The user object must include the username and the token.
+   *  
+   */
+  static async applyForJob(user, jobId) {
+
+    /** POST /users/[username]/jobs/[id]  { state } => { application }
+     * Returns {"applied": jobId}
+     * Authorization required: admin or same-user-as-:username
+     * */
+    let res = await this.request(`users/${user.username}/jobs/${jobId}`, {}, "post", user.token);
+
+    return res;
+  }
+
 
 
 }
 
 // for now, put token ("testuser" / "password" on class)
-JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-  "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-  "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+// JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+//   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+//   "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
 export default JoblyApi;

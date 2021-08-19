@@ -1,7 +1,7 @@
 import React from "react";
-import { NavItemLink, NavItemAuth } from "./NavItems";
+import { NavItemLink, NavItemAuthLinks, NavItemMainLinks } from "./NavItems";
 import { NavLink } from "react-router-dom";
-import { Navbar, Nav, NavItem, Button, NavbarText } from "reactstrap";
+import { Navbar, Nav, NavItem, NavbarText } from "reactstrap";
 
 import "./NavBar.css";
 
@@ -20,19 +20,14 @@ function NavBar({ currUser = { username: "", token: "" }, removeUserFx }) {
         </NavLink>
 
         <Nav className="ml-auto" navbar>
-          <NavItemLink navTo="/companies" navDisplay="Companies" />
-          <NavItemLink navTo="/jobs" navDisplay="Jobs" />
-          {/* <NavItem>
-            <NavLink to="/companies">Companies</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/jobs">Jobs</NavLink>
-          </NavItem> */}
-          {!(currUser.token) ? <NavItemAuth /> : ""}
+
+          {(currUser.token)
+            ? <NavItemMainLinks />
+            : <NavItemAuthLinks />}
 
           <NavItem className="mr-2">
             {(currUser.token)
-              ? <Button outline color="primary"><NavLink to="/signout">Sign Out</NavLink></Button>
+              ? <NavItemLink navTo="/signout" navDisplay="Sign Out" />
               : ""
             }
           </NavItem>

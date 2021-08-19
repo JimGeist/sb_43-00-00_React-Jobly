@@ -1,4 +1,3 @@
-
 /**
  * addCommas(nbr) accepts a number and returns a string equivalent 
  *  of the number with comma separations added at thousands, millions, billions, etc.
@@ -44,4 +43,4 @@ function addCommas(nbr) {
 
 }
 
-module.exports = addCommas;
+export {addCommas}

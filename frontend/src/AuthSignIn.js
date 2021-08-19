@@ -37,6 +37,8 @@ const AuthSignIn = ({ setCurrUserFx, whereTo = "/jobs" }) => {
         async function signInUser(user) {
 
             try {
+                // setCurrUserFx from App component is used because App needs to render in order for the 
+                //  NavBar to get updated.
                 setCurrUserFx({ username: formData.username, token: await JoblyApi.signIn(user) })
                 // setUser({ username: formData.username, token: await JoblyApi.signIn(user) })
                 // setCurrUserFx();

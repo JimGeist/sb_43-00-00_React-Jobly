@@ -1,3 +1,19 @@
 .Job-HideCompany {
     display: none;
 }
+
+.Job-BtnApply {
+    font-size: 0.9rem;
+    border-radius: 5px;
+    margin-left: 0.3rem;
+}
+
+.Job-SpanApplied {
+    font-style: italic;
+    font-size: 1.0rem;
+    margin-left: 0.3rem;
+}
+
+.Job-li {
+    margin-bottom: 0.50rem;
+}

@@ -13,7 +13,6 @@ const AuthSignOut = ({ removeUserFx, whereTo = "/" }) => {
 
     const history = useHistory();
 
-    // setCurrUserFx({});
     removeUserFx();
     history.push(whereTo);
 

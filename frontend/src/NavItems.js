@@ -13,7 +13,7 @@ function NavItemLink({ navTo = "/", navDisplay = "root" }) {
     );
 }
 
-function NavItemAuth() {
+function NavItemAuthLinks() {
     return (
         <>
             <NavItemLink navTo="/login" navDisplay="Sign In" />
@@ -23,5 +23,15 @@ function NavItemAuth() {
     );
 }
 
+function NavItemMainLinks() {
+    return (
+        <>
+            <NavItemLink navTo="/companies" navDisplay="Companies" />
+            <NavItemLink navTo="/jobs" navDisplay="Jobs" />
+        </>
 
-export { NavItemLink, NavItemAuth };
+    );
+}
+
+
+export { NavItemLink, NavItemAuthLinks, NavItemMainLinks };

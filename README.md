@@ -36,9 +36,15 @@ Navigation components were adjusted and Sign In / Sign Up links only appear for 
 
 Authenticated users are placed on the jobs listing page. 
 
-Routes are not yet protected.
 
 **Step Seven: Using localStorage and Protecting Routes**
+
+One of those tasks that sounds deceptively simple. A `useLocalStorage` hook was created and the user is correctly saved to localStorage with the `joblyUser` key. Problems occurred when the existing handling of state in `App` and `NavBar` were changed to the state maintained through `useLocalStorage`. `App` needs a state change in order to render and `NavBar` gets the user from `App`. A function to set use state in `App` is still passed to `AuthSignIn` and `AuthSignUp` components - and they now set the user in localStorage via `useLocalStorage`, set the user in `App` state with the passed function and finally redirect. 
+
+Route Protection implemented on `companies/`, `companies/:handle`, and `jobs/` routes through the use of `useRouteProtection` hook. The `useRouteProtection` uses `useLocalStorage` hook to determine whether the visitor is authenticated and redirects unauthenticated visitors to the login page. The `useRouteProtection` hook was added as one of the first lines in components that require route protection.
+
+`login` and `signup` pages are protected differently -- the pages are protected from visitors who are already authenticated.
+
 
 **Step Eight: Profile Page**
 

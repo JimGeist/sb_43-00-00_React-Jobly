@@ -42,10 +42,12 @@ const AuthSignUp = ({ setCurrUserFx, whereTo = "/jobs" }) => {
         async function signUpUser(newUser) {
 
             try {
-                // setCurrUserFx({ username: formData.username, token: (await JoblyApi.signUp(newUser)).token })
+                // setCurrUserFx from App component is used because App needs to render in order for the 
+                //  NavBar to get updated.
+                setCurrUserFx({ username: formData.username, token: await JoblyApi.signUp(newUser) })
                 // JoblyApi.signUp returns the token
-                setUser({ username: formData.username, token: await JoblyApi.signUp(newUser) });
-                setCurrUserFx();
+                // setUser({ username: formData.username, token: await JoblyApi.signUp(newUser) });
+                // setCurrUserFx();
                 history.push(whereTo);
 
                 // const res = await JoblyApi.signUp(newUser);
