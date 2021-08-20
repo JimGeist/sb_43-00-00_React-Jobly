@@ -8,6 +8,8 @@
 
 Build a react front-end to the provided Jobly backend. 
 
+[Jobly](http://clean-plane.surge.sh) was **deployed** with the backend on heroku and the front end on surge.sh at [http://clean-plane.surge.sh](http://clean-plane.surge.sh).
+
 **Step Zero: Setup**
 
 **Step One: Design Component Hierarchy**
@@ -48,18 +50,27 @@ Route Protection implemented on `companies/`, `companies/:handle`, and `jobs/` r
 
 **Step Eight: Profile Page**
 
+Skipped this one. A form to edit a user and save the changes are just more api calls.
+
 **Step Nine: Job Applications**
 
-**Step Ten: Deploy your Application on Heroku**
+Again, something that seems innocuous and NOT! The basis structure to see an Apply button, next to the job, then adding in logic to make the Apply button work again were straight forward. The tricky part was state management and how to get the page to refresh and show that an apply occurred. State already existed for all jobs, but state is needed for the jobs the logged in user applied. The issue was getting the page to refresh when an apply successfully occurs. I did not have much luck adding the newly applied job to the existing job list. A third state was added for the just applied to job. When the api returns `{applied: jobId}`, the `jobId` is placed in the applied to job state. The `useEffect` to load the jobs the user has applied has the applied to jobs state as a dependency, so when the applied to job changes, the useEffect to load the applied list executes. NOT IDEAL, since it would be better to use the list of applied jobs already in state and just append the new job to it.
 
+Happily, the Jobs component where all the above work was performed is also called from the CompanyDetails component, so an apply can happen from both spots as specified in the assignment.
+
+**Step Ten: Deploy your Application on Heroku**
+Backend was deployed on heroku. The frontend is deployed on surge at [http://clean-plane.surge.sh](http://clean-plane.surge.sh).
+
+The deployment steps were accurate. Postgres could not get added via the CLI from windows and the push of the local database to postgres failed. Luckily the tables were created and the seed file, `jobly-seed.sql`, added users, companies, and jobs.
+
+For the frontend, it was not clear that I could assign the sub-domain name, soo we gots `clean-plane` instead of `jimg-jobly`!
 
 
 ## Additional Details
 
 **Enhancements**
-- None.
+- There were some. The common `Jobs` component helped.
 
 **Difficulties**
-- Just a lot all at once. 
-
-
+- A different way of thinking. Not only do I need to consider state, but also `await`ing a response and not putting critical logic AFTER the `await`. 
+- Getting the NavBar to refresh. If I have 2 browser of the same browsers open to Jobly and I Sign Out of one, the second browser becomes aware of the logout when I change routes, but the NavBar still shows my name as if I am logged in. Probably other items, but those were top of mind.
